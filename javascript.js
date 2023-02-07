@@ -1,4 +1,4 @@
-function createSketchBook(squareQuantity) {
+function createNormalSketchBook(squareQuantity) {
     const sketchBook = document.querySelector("#sketchBook");
     for (let i = 0; i < Math.pow(squareQuantity, 2); i++) {
         const square = document.createElement("div");
