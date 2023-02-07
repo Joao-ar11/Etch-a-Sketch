@@ -1,0 +1,21 @@
+body {
+    background-color: #909090;
+    text-align: center;
+}
+
+button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #dddddd;
+}
+
+#sketchBook {
+    background-color: #ffffff;
+    height: 960px;
+    width: 960px;
+    margin: 30px auto;
+    border: 2px solid #000000;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
