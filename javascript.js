@@ -36,6 +36,7 @@ function destroySketchBook() {
     squares.forEach((square) => sketchBook.removeChild(square));
 }
 
+let sketchType = "normal";
 let squareQuantity = 16;
 createNormalSketchBook(squareQuantity);
 const squareQuantityButton = document.querySelector("#squareQuantity");
@@ -51,9 +52,22 @@ squareQuantityButton.addEventListener("click", () => {
         }
     }
     destroySketchBook();
-    createNormalSketchBook(squareQuantity);
+    switch(sketchType) {
+        case "normal":
+            createNormalSketchBook(squareQuantity);
+            break;
+        case "random":
+            createRandomSketchBook(squareQuantity);
+            break;
+    }
 })
 randomColor.addEventListener("change", () => {
     destroySketchBook();
-    createRandomSketchBook(squareQuantity);
+    if (randomColor.checked) {
+        createRandomSketchBook(squareQuantity);
+        sketchType = "random";
+    } else {
+        createNormalSketchBook(squareQuantity);
+        sketchType = "normal";
+    }
 })
