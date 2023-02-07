@@ -1,3 +1,7 @@
+function getRandomNumber() {
+    return Math.floor(Math.random() * 256)
+}
+
 function createNormalSketchBook(squareQuantity) {
     const sketchBook = document.querySelector("#sketchBook");
     for (let i = 0; i < Math.pow(squareQuantity, 2); i++) {
@@ -11,6 +15,21 @@ function createNormalSketchBook(squareQuantity) {
     }
 }
 
+function createRandomSketchBook(squareQuantity) {
+    const sketchBook = document.querySelector("#sketchBook");
+    for (let i = 0; i < Math.pow(squareQuantity, 2); i++) {
+        const square = document.createElement("div");
+        square.classList.toggle("square")
+        square.style.backgroundColor = "rgb(255, 255, 255)";
+        square.style.height = `${960 / squareQuantity}px`;
+        square.style.width = `${960 / squareQuantity}px`;
+        square.addEventListener("mouseover", () => square.style.backgroundColor = 
+            `rgb(${getRandomNumber()}, ${getRandomNumber()}, ${getRandomNumber()})`);
+        sketchBook.appendChild(square);
+    }
+}
+
+
 function destroySketchBook() {
     const sketchBook = document.querySelector("#sketchBook");
     const squares = document.querySelectorAll(".square");
@@ -18,8 +37,9 @@ function destroySketchBook() {
 }
 
 let squareQuantity = 16;
-createSketchBook(squareQuantity);
+createNormalSketchBook(squareQuantity);
 const squareQuantityButton = document.querySelector("#squareQuantity");
+const randomColor = document.querySelector("#randomColor");
 squareQuantityButton.addEventListener("click", () => {
     let keepGoing = true;
     while(keepGoing){
@@ -31,5 +51,9 @@ squareQuantityButton.addEventListener("click", () => {
         }
     }
     destroySketchBook();
-    createSketchBook(squareQuantity);
+    createNormalSketchBook(squareQuantity);
+})
+randomColor.addEventListener("change", () => {
+    destroySketchBook();
+    createRandomSketchBook(squareQuantity);
 })
