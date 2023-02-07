@@ -21,7 +21,15 @@ let squareQuantity = 16;
 createSketchBook(squareQuantity);
 const squareQuantityButton = document.querySelector("#squareQuantity");
 squareQuantityButton.addEventListener("click", () => {
-    squareQuantity = +prompt("Type quantity of squares on each line (max 100)");
+    let keepGoing = true;
+    while(keepGoing){
+        squareQuantity = +prompt("Type quantity of squares on each line (max 100)");
+        if (squareQuantity <= 100) {
+            keepGoing = false;
+        } else {
+            alert("Please, no numbers higher than 100.")
+        }
+    }
     destroySketchBook();
     createSketchBook(squareQuantity);
 })
