@@ -59,14 +59,7 @@ squareQuantityButton.addEventListener("click", () => {
         }
     }
     destroySketchBook();
-    switch(sketchType) {
-        case "normal":
-            createNormalSketchBook(squareQuantity);
-            break;
-        case "random":
-            createRandomSketchBook(squareQuantity);
-            break;
-    }
+    createNormalSketchBook();
 })
 randomColor.addEventListener("change", () => {
     if (randomColor.checked) {
@@ -76,4 +69,9 @@ randomColor.addEventListener("change", () => {
         setColorToNormal();
         sketchType = "normal";
     }
-})
+});
+const clear = document.querySelector("#clear");
+clear.addEventListener("click", () => {
+    destroySketchBook();
+    createNormalSketchBook(squareQuantity);
+});
