@@ -15,6 +15,18 @@ function createNormalSketchBook(squareQuantity) {
     }
 }
 
+function setColorToNormal() {
+    const squares = document.querySelectorAll(".square");
+    squares.forEach(square => {
+        square.removeEventListener("mouseover", () => {
+            square.style.backgroundColor = `rgb(${getRandomNumber()}, ${getRandomNumber()}, ${getRandomNumber()})`
+        });
+        square.addEventListener("mouseover", () => {
+            square.style.backgroundColor = `#000000`;
+        })
+    });
+}
+
 function setColorToRandom() {
     const squares = document.querySelectorAll(".square");
     squares.forEach(square => {
@@ -24,7 +36,6 @@ function setColorToRandom() {
         })
     });
 }
-
 
 function destroySketchBook() {
     const sketchBook = document.querySelector("#sketchBook");
@@ -62,7 +73,7 @@ randomColor.addEventListener("change", () => {
         setColorToRandom();
         sketchType = "random";
     } else {
-        createNormalSketchBook(squareQuantity);
+        setColorToNormal();
         sketchType = "normal";
     }
 })
