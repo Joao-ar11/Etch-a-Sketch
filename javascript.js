@@ -54,6 +54,7 @@ let sketchType = "normal";
 let squareQuantity = 16;
 createSketchBook(squareQuantity);
 const squareQuantityButton = document.querySelector("#squareQuantity");
+const normalColor = document.querySelector("#normalColor")
 const randomColor = document.querySelector("#randomColor");
 squareQuantityButton.addEventListener("click", () => {
     let keepGoing = true;
@@ -68,13 +69,16 @@ squareQuantityButton.addEventListener("click", () => {
     destroySketchBook();
     createSketchBook();
 })
+normalColor.addEventListener("change", () => {
+    if (normalColor.checked) {
+        setColorToNormal();
+        sketchType = "normal";
+    }
+});
 randomColor.addEventListener("change", () => {
     if (randomColor.checked) {
         setColorToRandom();
         sketchType = "random";
-    } else {
-        setColorToNormal();
-        sketchType = "normal";
     }
 });
 const clear = document.querySelector("#clear");
