@@ -15,18 +15,14 @@ function createNormalSketchBook(squareQuantity) {
     }
 }
 
-function createRandomSketchBook(squareQuantity) {
-    const sketchBook = document.querySelector("#sketchBook");
-    for (let i = 0; i < Math.pow(squareQuantity, 2); i++) {
-        const square = document.createElement("div");
-        square.classList.toggle("square")
-        square.style.backgroundColor = "rgb(255, 255, 255)";
-        square.style.height = `${960 / squareQuantity}px`;
-        square.style.width = `${960 / squareQuantity}px`;
-        square.addEventListener("mouseover", () => square.style.backgroundColor = 
-            `rgb(${getRandomNumber()}, ${getRandomNumber()}, ${getRandomNumber()})`);
-        sketchBook.appendChild(square);
-    }
+function setColorToRandom() {
+    const squares = document.querySelectorAll(".square");
+    squares.forEach(square => {
+        square.removeEventListener("mouseover", () => square.style.backgroundColor = "#000000");
+        square.addEventListener("mouseover", () => {
+            square.style.backgroundColor = `rgb(${getRandomNumber()}, ${getRandomNumber()}, ${getRandomNumber()})`;
+        })
+    });
 }
 
 
@@ -62,9 +58,8 @@ squareQuantityButton.addEventListener("click", () => {
     }
 })
 randomColor.addEventListener("change", () => {
-    destroySketchBook();
     if (randomColor.checked) {
-        createRandomSketchBook(squareQuantity);
+        setColorToRandom();
         sketchType = "random";
     } else {
         createNormalSketchBook(squareQuantity);
